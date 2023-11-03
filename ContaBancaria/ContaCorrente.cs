@@ -26,9 +26,21 @@ class ContaCorrente
         Console.WriteLine("3 - Receber Transferência");
         Console.WriteLine("4 - Sair da conta");
 
-        Console.Write("\nDigite uma opção: ");
-        opcaoEscolhida = Console.ReadLine();
-        opcao = int.Parse(opcaoEscolhida);
+        try
+        {
+            Console.Write("\nDigite uma opção: ");
+            opcaoEscolhida = Console.ReadLine();
+            opcao = int.Parse(opcaoEscolhida);
+        }
+        catch (System.FormatException) 
+        {
+            Console.Clear();
+            Console.WriteLine("\nInforme uma opção válida!!!");
+            Console.WriteLine("\nDigite um número de 1 a 4");
+            Thread.Sleep(2000);
+            Console.Clear();
+            ExibirOpcoes();
+        }
         return opcao;
     }
 
@@ -41,31 +53,58 @@ class ContaCorrente
     public void FazerTransferencia()
     {
         Console.Clear();
-        Console.Write("Quanto deseja transferir? - ");
-        transferencia = Console.ReadLine();
-        double debito = double.Parse(transferencia);
+        double debito = 0;
+        try
+        {
+            Console.Write("Quanto deseja transferir? - ");
+            transferencia = Console.ReadLine();
+            debito = double.Parse(transferencia);
 
-        if (debito > Saldo)
-        {
-            Console.WriteLine("\nSaldo insuficiente na conta");
+            if (debito > Saldo)
+            {
+                Console.WriteLine("\nSaldo insuficiente na conta");
+            }
+            else
+            {
+                Saldo -= debito;
+                Console.WriteLine($"\nTransferência de R$ {debito} realizada com sucesso!");
+            }
         }
-        else
+        catch (System.FormatException)
         {
-            Saldo -= debito;
-            Console.WriteLine($"\nTransferência de R$ {debito} realizada com sucesso!");
+            Console.Clear();
+            Console.WriteLine("\nInforme uma opção válida!!!");
+            Console.WriteLine("\nDigite somente número");
+            Thread.Sleep(2000);
+            Console.Clear();
+            FazerTransferencia();
         }
-        
     }
 
     public void ReceberTransferencia()
     {
         Console.Clear();
-        Console.Write("Quanto está recebendo? -  ");
-        receber = Console.ReadLine();
-        double credito = double.Parse(receber);
+        double credito = 0;
 
-        Saldo += credito;
-        Console.WriteLine($"\nTransferência de R$ {credito} recebida com sucesso!");
+        try
+        {
+            Console.Write("Quanto está recebendo? -  ");
+            receber = Console.ReadLine();
+            credito = double.Parse(receber);
+
+            Saldo += credito;
+            Console.WriteLine($"\nTransferência de R$ {credito} recebida com sucesso!");
+        }
+        catch (System.FormatException)
+        {
+            Console.Clear();
+            Console.WriteLine("\nInforme uma opção válida!!!");
+            Console.WriteLine("\nDigite somente número");
+            Thread.Sleep(2000);
+            Console.Clear();
+            ReceberTransferencia();
+        }
+        
     }
 }
 

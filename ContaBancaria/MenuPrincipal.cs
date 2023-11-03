@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using System.Threading.Channels;
 
 class MenuPrincipal
 {
@@ -13,26 +14,50 @@ class MenuPrincipal
 
     public int Menu()
     {
+        int opcao = 0;
+
         BoasVindas();
         Console.WriteLine("O que deseja fazer?");
         Console.WriteLine("\n1 - Entrar em uma conta");
         Console.WriteLine("\n2 - Sair do Sistema");
-
-        Console.Write("\nDigite 1 ou 2: ");
-        escolha = Console.ReadLine();
-        int opcao = int.Parse(escolha);
-
-        switch (opcao)
+        
+        try
         {
-            case 1:
+            Console.Write("\nDigite uma opção: ");
+            escolha = Console.ReadLine();
+            opcao = int.Parse(escolha);
+            if (opcao <= 2)
+            {
+                switch (opcao)
+                {
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine("\n\nEntrando em sua conta....");
+                        break;
+                    case 2:
+                        SairSitema();
+                        break;
+                }
+            }
+            else
+            {
                 Console.Clear();
-                Console.WriteLine("\n\nEntrando em sua conta....");
-                break;
-            case 2:
-                SairSitema();
-                break;
+                Console.WriteLine("\nInforme uma opção válida!!!");
+                Console.WriteLine("\nDigite somente 1 ou 2");
+                Thread.Sleep(2000);
+                Console.Clear();
+                Menu();
+            }
         }
-
+        catch (System.FormatException)
+        {
+            Console.Clear();
+            Console.WriteLine("\nInforme uma opção válida!!!");
+            Console.WriteLine("\nDigite somente 1 ou 2");
+            Thread.Sleep(2000);
+            Console.Clear();
+            Menu();
+        }
         return opcao;
     }
 

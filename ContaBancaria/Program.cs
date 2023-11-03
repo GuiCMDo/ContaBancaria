@@ -46,23 +46,35 @@ menu.Menu();
 Thread.Sleep(500);
 AcessarConta();
 
-while (opcaoLopping != 6)
+while (opcaoLopping != 4)
 {
     Console.Clear();
     Thread.Sleep(500);
     opcaoLopping = cc.ExibirOpcoes();
 
+    if (opcaoLopping > 4)
+    {
+        Console.Clear();
+        Console.WriteLine("\nInforme uma opção válida!!!");
+        Console.WriteLine("\nDigite um número de 1 a 4");
+        Thread.Sleep(2000);
+        Console.Clear();
+    }
+
     switch (opcaoLopping)
     {
-        case 1: cc.ConsultarSaldo();
+        case 1:
+            cc.ConsultarSaldo();
             Thread.Sleep(2000);
             Console.Clear();
             break;
-        case 2: cc.FazerTransferencia();
+        case 2:
+            cc.FazerTransferencia();
             Thread.Sleep(1000);
             Console.Clear();
             break;
-        case 3: cc.ReceberTransferencia();
+        case 3:
+            cc.ReceberTransferencia();
             Thread.Sleep(1000);
             Console.Clear();
             break;
@@ -76,7 +88,7 @@ while (opcaoLopping != 6)
             Thread.Sleep(800);
             AcessarConta();
             break;
-    }
+    } 
 }
 
 
