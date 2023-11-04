@@ -1,9 +1,12 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using System.Threading.Channels;
+using ContaBancaria.Modules.Contas;
 
+
+namespace ContaBancaria.Modules.Menu;
 class MenuPrincipal
 {
-   ContaCorrente cc = new ContaCorrente();
+   ContaCorrente cc = new();
     private string escolha = null;
     
     void BoasVindas()

@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
+namespace ContaBancaria.Modules.Contas;
 class ContaCorrente
 {
     //Propriedades
@@ -68,6 +69,10 @@ class ContaCorrente
             {
                 Saldo -= debito;
                 Console.WriteLine($"\nTransferência de R$ {debito} realizada com sucesso!");
+
+                Console.WriteLine("\nDigite uma tecla para votar ao menu principal");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
         catch (System.FormatException)
@@ -94,6 +99,10 @@ class ContaCorrente
 
             Saldo += credito;
             Console.WriteLine($"\nTransferência de R$ {credito} recebida com sucesso!");
+
+            Console.WriteLine("\nDigite uma tecla para votar ao menu principal");
+            Console.ReadKey();
+            Console.Clear();
         }
         catch (System.FormatException)
         {

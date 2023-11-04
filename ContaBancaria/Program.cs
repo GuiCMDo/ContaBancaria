@@ -1,5 +1,8 @@
-﻿//Instanciando classes
-ContaCorrente cc = new ContaCorrente();
+﻿using ContaBancaria.Modules.Contas;
+using ContaBancaria.Modules.Menu;
+
+//Instanciando classes
+ContaCorrente cc = new ();
 cc.CPF = "4";
 cc.Nome = "Guilherme";
 cc.Senha = "1234";
@@ -70,12 +73,10 @@ while (opcaoLopping != 4)
             break;
         case 2:
             cc.FazerTransferencia();
-            Thread.Sleep(1000);
             Console.Clear();
             break;
         case 3:
             cc.ReceberTransferencia();
-            Thread.Sleep(1000);
             Console.Clear();
             break;
         case 4:
